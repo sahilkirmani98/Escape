@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Escape Edit Kashmir — Heaven on Earth, Curated.</title>
+<meta name="description" content="Curated luxury Kashmir getaways by locals. Dal Lake houseboats, Gulmarg snow, Pahalgam valleys. Fully planned, zero stress. Starting ₹9,999/person.">
+<meta property="og:title" content="The Escape Edit Kashmir — Heaven on Earth, Curated.">
+<meta property="og:description" content="Curated luxury Kashmir getaways. Dal Lake houseboats, Gulmarg snow, Pahalgam valleys.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   ROOT TOKENS
+══════════════════════════════════════════ */
+:root {
+  --black:   #07090e;
+  --deep:    #0a0f1a;
+  --navy:    #0d1828;
+  --navy2:   #111f35;
+  --blue:    #162c48;
+  --gold:    #c9a84c;
+  --gold-lt: #dfc07b;
+  --gold-dk: #a8863a;
+  --gold-glow: rgba(201,168,76,0.15);
+  --ice:     #d6eaf8;
+  --cream:   #f0ece0;
+  --muted:   #6a7d90;
+  --white:   #f9f7f2;
+  --green:   #1e3a28;
+  --green2:  #2a4d38;
+  --sand:    #e8e0cc;
+  --radius:  2px;
+  --ease:    cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--deep);
+  color:var(--cream);
+  overflow-x:hidden;
+  cursor:none;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{cursor:none;border:none;background:none;font-family:inherit}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),var(--gold-dk));border-radius:2px}
+
+/* ══════════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════════ */
+#cursor{
+  position:fixed;width:10px;height:10px;
+  background:var(--gold);border-radius:50%;
+  pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:width 0.2s var(--ease),height 0.2s var(--ease),background 0.2s;
+  mix-blend-mode:normal;
+}
+#cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(201,168,76,0.5);
+  border-radius:50%;pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);
+  transition:transform 0.12s var(--ease),width 0.3s var(--ease),height 0.3s var(--ease),opacity 0.2s;
+}
+body:has(a:hover) #cursor,
+body:has(button:hover) #cursor{width:6px;height:6px;background:var(--gold-lt)}
+body:has(a:hover) #cursor-ring,
+body:has(button:hover) #cursor-ring{width:52px;height:52px;opacity:0.6}
+
+/* ══════════════════════════════════════════
+   NOISE OVERLAY
+══════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity:0.4;
+}
+
+/* ══════════════════════════════════════════
+   ANNOUNCE BAR
+══════════════════════════════════════════ */
+.announce{
+  background:linear-gradient(90deg,var(--green) 0%,#1e3d2a 50%,var(--green) 100%);
+  color:var(--gold-lt);text-align:center;
+  padding:0.6rem 1rem;font-size:0.72rem;
+  font-weight:500;letter-spacing:0.14em;
+  position:relative;overflow:hidden;
+}
+.announce::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(201,168,76,0.08) 50%,transparent 100%);
+  animation:shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer{0%,100%{opacity:0}50%{opacity:1}}
+.announce strong{color:#fff}
+.announce-ticker{display:inline-flex;align-items:center;gap:2rem}
+
+/* ══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 4.5rem;
+  transition:all 0.4s var(--ease);
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(7,9,14,0.95);
+  backdrop-filter:blur(24px) saturate(180%);
+  border-bottom-color:rgba(201,168,76,0.1);
+  padding:0.9rem 4.5rem;
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-weight:600;
+  letter-spacing:0.18em;color:var(--gold);
+  text-transform:uppercase;display:flex;
+  align-items:center;gap:0.6rem;
+}
+.logo-mark{
+  width:28px;height:28px;
+  border:1px solid rgba(201,168,76,0.4);
+  border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:0.85rem;
+}
+.logo span{color:var(--cream);font-weight:300;font-style:italic;letter-spacing:0.06em}
+
+.nav-links{display:flex;gap:2.8rem;list-style:none;align-items:center}
+.nav-links a{
+  font-size:0.72rem;font-weight:500;
+  letter-spacing:0.16em;color:rgba(240,236,224,0.55);
+  text-transform:uppercase;transition:color 0.25s;
+  position:relative;padding-bottom:0.15rem;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:1px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.3s var(--ease);
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+.nav-cta{
+  display:inline-flex;align-items:center;gap:0.55rem;
+  background:var(--gold);color:var(--black);
+  padding:0.65rem 1.6rem;border-radius:var(--radius);
+  font-size:0.72rem;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;transition:all 0.3s var(--ease);
+  white-space:nowrap;
+}
+.nav-cta:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 8px 28px rgba(201,168,76,0.3)}
+
+/* Mobile hamburger */
+.burger{display:none;flex-direction:column;gap:5px;padding:4px;z-index:901}
+.burger span{display:block;width:24px;height:1.5px;background:var(--cream);transition:all 0.35s var(--ease);transform-origin:center}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* Mobile menu */
+.mobile-menu{
+  position:fixed;inset:0;z-index:890;
+  background:rgba(7,9,14,0.98);backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2.5rem;opacity:0;pointer-events:none;
+  transition:opacity 0.4s var(--ease);
+}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;font-weight:300;color:var(--cream);
+  letter-spacing:0.05em;transition:color 0.2s;
+}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-menu .m-cta{
+  margin-top:1rem;background:var(--gold);color:var(--black);
+  padding:1rem 3rem;border-radius:var(--radius);
+  font-family:'DM Sans',sans-serif;
+  font-size:0.8rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;position:relative;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+
+/* Cinematic background layers */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-layer1{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 50%,rgba(13,24,40,0.3) 0%,transparent 70%),
+    linear-gradient(160deg,rgba(7,9,14,1) 0%,rgba(10,15,26,0.85) 40%,rgba(7,9,14,0.97) 100%);
+}
+.hero-bg-layer2{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 65% 35%,rgba(201,168,76,0.05) 0%,transparent 55%),
+    radial-gradient(ellipse at 20% 80%,rgba(30,58,40,0.35) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 80%,rgba(13,24,40,0.5) 0%,transparent 45%);
+}
+
+/* Mountain silhouette SVG bg */
+.hero-mountain{
+  position:absolute;bottom:0;left:0;right:0;z-index:1;
+  opacity:0.12;pointer-events:none;
+}
+
+/* Snowflakes */
+.snow-wrap{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.flake{
+  position:absolute;top:-20px;
+  color:rgba(214,234,248,0.3);
+  animation:fall linear infinite;
+}
+.flake:nth-child(1){left:3%;font-size:14px;animation-duration:13s;animation-delay:0s}
+.flake:nth-child(2){left:12%;font-size:10px;animation-duration:17s;animation-delay:2.5s}
+.flake:nth-child(3){left:22%;font-size:16px;animation-duration:11s;animation-delay:5s}
+.flake:nth-child(4){left:35%;font-size:9px;animation-duration:19s;animation-delay:1.2s}
+.flake:nth-child(5){left:48%;font-size:13px;animation-duration:14s;animation-delay:4s}
+.flake:nth-child(6){left:57%;font-size:8px;animation-duration:16s;animation-delay:3.5s}
+.flake:nth-child(7){left:68%;font-size:11px;animation-duration:12s;animation-delay:7s}
+.flake:nth-child(8){left:78%;font-size:15px;animation-duration:18s;animation-delay:0.8s}
+.flake:nth-child(9){left:88%;font-size:10px;animation-duration:15s;animation-delay:6s}
+.flake:nth-child(10){left:95%;font-size:13px;animation-duration:20s;animation-delay:2s}
+.flake:nth-child(11){left:42%;font-size:9px;animation-duration:22s;animation-delay:9s}
+.flake:nth-child(12){left:73%;font-size:12px;animation-duration:16s;animation-delay:11s}
+@keyframes fall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:0}
+  8%{opacity:1}
+  92%{opacity:0.5}
+  100%{transform:translateY(105vh) rotate(360deg);opacity:0}
+}
+
+/* Hero content */
+.hero-inner{
+  position:relative;z-index:5;
+  max-width:1320px;margin:0 auto;width:100%;
+  padding:calc(80px + 5rem) 4.5rem 4rem;
+  display:grid;grid-template-columns:1.2fr 0.8fr;
+  gap:5rem;align-items:center;flex:1;
+}
+
+/* Left column */
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:2.2rem;opacity:0;animation:fadeUp 0.8s var(--ease) 0.2s forwards}
+.eyebrow-line{width:44px;height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,0.3))}
+.eyebrow-text{font-size:0.68rem;font-weight:500;letter-spacing:0.36em;text-transform:uppercase;color:var(--gold)}
+
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4rem,6.5vw,8rem);
+  font-weight:300;line-height:0.96;
+  color:var(--white);margin-bottom:2rem;
+  opacity:0;animation:fadeUp 0.9s var(--ease) 0.4s forwards;
+}
+.hero-title .line{display:block}
+.hero-title .italic{font-style:italic;color:var(--gold)}
+.hero-title .bold{font-weight:700;display:block}
+.hero-title .small{font-size:0.42em;letter-spacing:0.12em;font-weight:400;font-style:normal;color:rgba(240,236,224,0.35);text-transform:uppercase;margin-bottom:0.3em;font-family:'DM Sans',sans-serif}
+
+.hero-sub{
+  font-size:1rem;font-weight:300;line-height:1.95;
+  color:rgba(240,236,224,0.5);max-width:460px;
+  margin-bottom:3rem;
+  opacity:0;animation:fadeUp 0.9s var(--ease) 0.6s forwards;
+}
+
+.hero-btns{
+  display:flex;gap:1.1rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 0.9s var(--ease) 0.8s forwards;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  background:var(--gold);color:var(--black);
+  padding:1.05rem 2.6rem;border-radius:var(--radius);
+  font-size:0.77rem;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;transition:all 0.35s var(--ease);
+}
+.btn-primary:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 18px 50px rgba(201,168,76,0.32)}
+.btn-primary svg{width:14px;height:14px;transition:transform 0.25s}
+.btn-primary:hover svg{transform:translateX(3px)}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  color:var(--cream);border:1px solid rgba(201,168,76,0.3);
+  padding:1.05rem 2.6rem;border-radius:var(--radius);
+  font-size:0.77rem;font-weight:500;letter-spacing:0.14em;
+  text-transform:uppercase;transition:all 0.35s var(--ease);
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.05)}
+
+/* Right: floating cards */
+.hero-right{
+  position:relative;height:520px;
+  opacity:0;animation:fadeIn 1.2s var(--ease) 0.9s forwards;
+}
+.fcard{
+  position:absolute;border-radius:3px;
+  border:1px solid rgba(201,168,76,0.15);
+  overflow:hidden;
+  backdrop-filter:blur(16px);
+  transition:box-shadow 0.3s;
+}
+.fcard:hover{box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(201,168,76,0.25)}
+
+.fcard-1{width:225px;top:10px;right:50px;background:rgba(13,24,40,0.9);animation:float1 7s ease-in-out infinite}
+.fcard-2{width:205px;top:155px;right:5px;background:rgba(7,9,14,0.92);animation:float2 8.5s ease-in-out infinite}
+.fcard-3{width:210px;bottom:30px;right:55px;background:rgba(13,24,40,0.88);animation:float3 6.5s ease-in-out infinite}
+.fcard-4{width:160px;top:270px;right:220px;background:rgba(30,58,40,0.85);animation:float4 9s ease-in-out infinite}
+
+@keyframes float1{0%,100%{transform:translateY(0) rotate(1.8deg)}50%{transform:translateY(-14px) rotate(1.8deg)}}
+@keyframes float2{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-10px) rotate(-1.2deg)}}
+@keyframes float3{0%,100%{transform:translateY(0) rotate(2.2deg)}50%{transform:translateY(-12px) rotate(2.2deg)}}
+@keyframes float4{0%,100%{transform:translateY(0) rotate(-1.8deg)}50%{transform:translateY(-8px) rotate(-1.8deg)}}
+
+.fcard-img{height:100px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;background:rgba(201,168,76,0.05);border-bottom:1px solid rgba(201,168,76,0.1)}
+.fcard-body{padding:1rem 1.1rem 1.2rem}
+.fcard-tag{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.35rem}
+.fcard-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:0.1rem}
+.fcard-meta{font-size:0.68rem;color:var(--muted);margin-bottom:0.5rem}
+.fcard-price{font-size:1rem;font-weight:600;color:var(--gold-lt)}
+.fcard-badge{display:inline-block;font-size:0.58rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:0.22rem 0.55rem;border-radius:1px;background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.2)}
+
+/* Pulse dot */
+.live-dot{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.62rem;color:rgba(60,200,120,0.9);letter-spacing:0.1em;margin-top:0.4rem}
+.live-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:#3cc878;animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(60,200,120,0.4)}50%{opacity:0.6;box-shadow:0 0 0 4px rgba(60,200,120,0)}}
+
+/* Scroll indicator */
+.hero-scroll{
+  position:relative;z-index:5;
+  display:flex;align-items:center;gap:1.2rem;
+  padding:2rem 4.5rem 3rem;
+  opacity:0;animation:fadeIn 1s var(--ease) 1.4s forwards;
+}
+.scroll-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,0.25),transparent)}
+.scroll-text{font-size:0.63rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.5)}
+.scroll-arrow{width:30px;height:30px;border:1px solid rgba(201,168,76,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+/* Stats bar */
+.hero-stats-bar{
+  position:relative;z-index:5;
+  background:rgba(7,9,14,0.8);border-top:1px solid rgba(201,168,76,0.08);
+  backdrop-filter:blur(10px);
+}
+.hero-stats-inner{
+  max-width:1320px;margin:0 auto;
+  padding:1.8rem 4.5rem;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  position:relative;
+}
+.hstat{text-align:center;padding:0 1.5rem;position:relative}
+.hstat + .hstat::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:40px;background:rgba(201,168,76,0.1)}
+.hstat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.1rem;font-weight:600;color:var(--gold);
+  line-height:1;margin-bottom:0.3rem;
+}
+.hstat-label{font-size:0.63rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase}
+
+/* ══════════════════════════════════════════
+   SEPARATORS
+══════════════════════════════════════════ */
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.2),transparent)}
+
+/* ══════════════════════════════════════════
+   SECTION COMMONS
+══════════════════════════════════════════ */
+.section{max-width:1320px;margin:0 auto;padding:7rem 4.5rem}
+.section-sm{max-width:1320px;margin:0 auto;padding:5rem 4.5rem}
+
+.sec-tag{display:inline-flex;align-items:center;gap:0.9rem;margin-bottom:1.6rem}
+.sec-tag .ln{width:32px;height:1px;background:var(--gold)}
+.sec-tag .tx{font-size:0.67rem;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold)}
+
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.6rem,4vw,4.2rem);
+  font-weight:300;line-height:1.12;
+  color:var(--white);margin-bottom:1.2rem;
+}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-desc{font-size:0.92rem;font-weight:300;line-height:1.9;color:rgba(240,236,224,0.42)}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+/* ══════════════════════════════════════════
+   QUOTE STRIP
+══════════════════════════════════════════ */
+.qstrip{
+  background:linear-gradient(135deg,var(--green) 0%,#1a3a28 40%,#0c1e10 100%);
+  padding:5rem 4.5rem;text-align:center;position:relative;overflow:hidden;
+}
+.qstrip::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(201,168,76,0.07) 0%,transparent 60%);
+}
+.qstrip::after{
+  content:'"';
+  position:absolute;top:-2rem;left:50%;transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:20rem;color:rgba(201,168,76,0.03);
+  line-height:1;pointer-events:none;
+}
+.qstrip-inner{max-width:860px;margin:0 auto;position:relative;z-index:2}
+.qstrip-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3.2vw,3.2rem);
+  font-weight:300;font-style:italic;
+  line-height:1.45;color:var(--white);margin-bottom:1.5rem;
+}
+.qstrip-quote em{color:var(--gold-lt)}
+.qstrip-attr{font-size:0.72rem;color:rgba(201,168,76,0.5);letter-spacing:0.25em;text-transform:uppercase}
+.qstrip-line{width:50px;height:1px;background:rgba(201,168,76,0.25);margin:1rem auto}
+
+/* ══════════════════════════════════════════
+   PACKAGES
+══════════════════════════════════════════ */
+.pkgs-section{background:var(--black);padding:2px 0}
+.pkgs-header{
+  max-width:1320px;margin:0 auto;
+  padding:6rem 4.5rem 3.5rem;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.pkgs-grid{
+  max-width:1320px;margin:0 auto;
+  padding:0 4.5rem 6rem;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:rgba(201,168,76,0.06);
+}
+
+.pkg{
+  background:var(--black);padding:2.8rem;
+  position:relative;overflow:hidden;
+  transition:background 0.4s var(--ease);cursor:none;
+}
+.pkg::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-lt),var(--gold));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.5s var(--ease);
+}
+.pkg::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.04) 0%,transparent 70%);
+  opacity:0;transition:opacity 0.4s;
+}
+.pkg:hover{background:#0c131e}
+.pkg:hover::before{transform:scaleX(1)}
+.pkg:hover::after{opacity:1}
+.pkg.featured{background:var(--navy);border:1px solid rgba(201,168,76,0.12)}
+.pkg.featured::before{transform:scaleX(1)}
+
+.pkg-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.61rem;font-weight:600;letter-spacing:0.22em;
+  text-transform:uppercase;padding:0.28rem 0.75rem;
+  border:1px solid rgba(201,168,76,0.25);
+  color:var(--gold);border-radius:1px;margin-bottom:2rem;
+}
+.pkg-icon{font-size:3rem;margin-bottom:1.5rem;display:block;line-height:1}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;color:var(--white);line-height:1.1;margin-bottom:0.35rem}
+.pkg-loc{font-size:0.71rem;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.5rem}
+.pkg-desc{font-size:0.86rem;font-weight:300;line-height:1.88;color:rgba(240,236,224,0.4);margin-bottom:2rem}
+
+.inc-title{font-size:0.64rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.85rem}
+.inc-list{list-style:none;margin-bottom:2rem}
+.inc-list li{
+  display:flex;align-items:flex-start;gap:0.75rem;
+  font-size:0.82rem;font-weight:300;
+  color:rgba(240,236,224,0.6);
+  margin-bottom:0.5rem;line-height:1.5;
+}
+.inc-list li::before{content:'✦';color:var(--gold);font-size:0.6rem;margin-top:0.18rem;flex-shrink:0}
+
+.pkg-foot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(201,168,76,0.08);padding-top:1.6rem;
+  margin-top:auto;
+}
+.pkg-price-lbl{font-size:0.62rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;color:var(--gold);line-height:1}
+.pkg-price-sub{font-size:0.7rem;color:var(--muted);margin-top:0.2rem}
+
+.pkg-btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:transparent;border:1px solid rgba(201,168,76,0.3);
+  color:var(--gold);padding:0.7rem 1.4rem;border-radius:var(--radius);
+  font-size:0.7rem;font-weight:600;letter-spacing:0.13em;
+  text-transform:uppercase;transition:all 0.3s var(--ease);
+  white-space:nowrap;
+}
+.pkg-btn:hover{background:var(--gold);color:var(--black);border-color:var(--gold);transform:translateY(-1px)}
+
+/* ══════════════════════════════════════════
+   DESTINATIONS SHOWCASE
+══════════════════════════════════════════ */
+.destinations{background:var(--deep);padding:7rem 0;overflow:hidden}
+.dest-header{max-width:1320px;margin:0 auto;padding:0 4.5rem 4rem}
+.dest-track-wrap{position:relative}
+.dest-track{
+  display:flex;gap:1.5px;
+  transition:transform 0.6s var(--ease);
+}
+.dest-slide{
+  flex:0 0 calc(33.333% - 1px);
+  min-width:0;position:relative;
+  height:480px;overflow:hidden;
+  cursor:none;
+}
+.dest-slide-bg{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:8rem;
+  transition:transform 0.6s var(--ease);
+}
+.dest-slide:nth-child(1) .dest-slide-bg{background:linear-gradient(135deg,#0d2030 0%,#162840 50%,#0a1520 100%)}
+.dest-slide:nth-child(2) .dest-slide-bg{background:linear-gradient(135deg,#0e1e10 0%,#1a3020 50%,#0a1510 100%)}
+.dest-slide:nth-child(3) .dest-slide-bg{background:linear-gradient(135deg,#1a1020 0%,#2a1535 50%,#120e1a 100%)}
+.dest-slide:hover .dest-slide-bg{transform:scale(1.05)}
+.dest-slide-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(7,9,14,0.95) 0%,rgba(7,9,14,0.2) 55%,transparent 100%);
+}
+.dest-slide-content{position:absolute;bottom:0;left:0;right:0;padding:2.5rem}
+.dest-slide-tag{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.dest-slide-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--white);margin-bottom:0.5rem}
+.dest-slide-desc{font-size:0.8rem;font-weight:300;color:rgba(240,236,224,0.5);line-height:1.6;margin-bottom:1rem}
+.dest-slide-pill{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.2);
+  color:var(--gold-lt);padding:0.35rem 0.9rem;border-radius:20px;
+  font-size:0.68rem;font-weight:500;letter-spacing:0.08em;
+}
+
+/* ══════════════════════════════════════════
+   HOW IT WORKS
+══════════════════════════════════════════ */
+.hiw-wrap{padding:7rem 0;position:relative;overflow:hidden}
+.hiw-wrap::before{
+  content:'KASHMIR';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;font-size:16vw;font-weight:700;
+  color:rgba(201,168,76,0.02);white-space:nowrap;pointer-events:none;letter-spacing:0.1em;
+}
+.hiw-inner{max-width:1320px;margin:0 auto;padding:0 4.5rem}
+.hiw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:5rem;position:relative}
+.hiw-grid::before{
+  content:'';position:absolute;top:2.8rem;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,var(--gold),rgba(201,168,76,0.15),var(--gold));
+  z-index:0;
+}
+.hiw-step{padding:0 2rem;position:relative;z-index:1;text-align:center}
+.hiw-num-wrap{
+  width:60px;height:60px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.25);
+  background:var(--deep);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:600;color:var(--gold);
+  position:relative;
+}
+.hiw-num-wrap::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.08);
+}
+.hiw-icon{font-size:1.6rem;margin-bottom:1rem;display:block}
+.hiw-ttl{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--white);margin-bottom:0.75rem}
+.hiw-desc{font-size:0.82rem;font-weight:300;line-height:1.85;color:rgba(240,236,224,0.38)}
+
+/* ══════════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════════ */
+.testi-section{background:var(--navy);padding:7rem 0}
+.testi-inner{max-width:1320px;margin:0 auto;padding:0 4.5rem}
+
+/* Marquee testimonials */
+.testi-marquee{overflow:hidden;margin:4rem -4.5rem 0;padding:0 4.5rem}
+.testi-track{
+  display:flex;gap:1.5rem;
+  animation:marquee 40s linear infinite;
+  width:max-content;
+}
+.testi-track:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.tcard{
+  flex:0 0 380px;
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(201,168,76,0.08);
+  padding:2rem;border-radius:2px;
+  transition:border-color 0.3s,background 0.3s;
+}
+.tcard:hover{border-color:rgba(201,168,76,0.22);background:rgba(255,255,255,0.04)}
+.tcard-stars{color:var(--gold);font-size:0.8rem;letter-spacing:0.18em;margin-bottom:1.2rem}
+.tcard-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:300;font-style:italic;
+  line-height:1.72;color:var(--cream);margin-bottom:1.5rem;
+}
+.tcard-author{display:flex;align-items:center;gap:0.9rem}
+.tcard-av{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dk),var(--navy2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.78rem;font-weight:600;color:var(--black);flex-shrink:0;
+  border:1px solid rgba(201,168,76,0.3);
+}
+.tcard-name{font-size:0.83rem;font-weight:500;color:var(--cream);margin-bottom:0.15rem}
+.tcard-loc{font-size:0.68rem;color:var(--muted)}
+
+/* ══════════════════════════════════════════
+   WHY US
+══════════════════════════════════════════ */
+.why-section{padding:7rem 0;position:relative}
+.why-inner{max-width:1320px;margin:0 auto;padding:0 4.5rem}
+.why-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:2px;background:rgba(201,168,76,0.06);margin-top:4rem;
+}
+.why-item{
+  background:var(--deep);padding:2.8rem;
+  display:flex;gap:1.8rem;
+  transition:background 0.3s var(--ease);
+  position:relative;overflow:hidden;
+}
+.why-item::before{
+  content:'';position:absolute;bottom:0;right:0;
+  width:120px;height:120px;
+  background:radial-gradient(ellipse,rgba(201,168,76,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.why-item:hover{background:#0e1c2f}
+.why-icon-wrap{
+  width:50px;height:50px;flex-shrink:0;
+  background:rgba(201,168,76,0.05);
+  border:1px solid rgba(201,168,76,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;border-radius:var(--radius);
+}
+.why-ttl{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;color:var(--white);margin-bottom:0.55rem;line-height:1.3}
+.why-desc{font-size:0.83rem;font-weight:300;line-height:1.82;color:rgba(240,236,224,0.38)}
+
+/* ══════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════ */
+.faq-section{background:var(--black);padding:7rem 0}
+.faq-inner{max-width:900px;margin:0 auto;padding:0 4.5rem}
+.faq-list{margin-top:4rem}
+.faq-item{border-bottom:1px solid rgba(201,168,76,0.08);overflow:hidden}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.6rem 0;cursor:none;transition:color 0.25s;
+}
+.faq-q-text{font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-weight:400;color:var(--cream);transition:color 0.25s}
+.faq-q:hover .faq-q-text{color:var(--gold)}
+.faq-icon{
+  width:28px;height:28px;border:1px solid rgba(201,168,76,0.2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--gold);font-size:1rem;font-weight:300;
+  transition:all 0.35s var(--ease);
+}
+.faq-item.open .faq-icon{background:var(--gold);color:var(--black);transform:rotate(45deg)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.45s var(--ease),padding 0.35s;
+}
+.faq-a-inner{
+  padding:0 0 1.6rem;
+  font-size:0.88rem;font-weight:300;line-height:1.88;
+  color:rgba(240,236,224,0.4);
+}
+.faq-item.open .faq-a{max-height:300px}
+
+/* ══════════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════════ */
+.cta-section{
+  background:
+    linear-gradient(135deg,#0c1e10 0%,var(--green2) 40%,#0c1e10 100%);
+  padding:9rem 4.5rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.1) 0%,transparent 60%);
+}
+.cta-section::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 100%,rgba(30,58,40,0.5) 0%,transparent 60%);
+}
+.cta-inner{position:relative;z-index:2;max-width:680px;margin:0 auto}
+.cta-eyebrow{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1.5rem}
+.cta-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,5vw,5.5rem);
+  font-weight:300;line-height:1;color:var(--white);margin-bottom:1.5rem;
+}
+.cta-title em{font-style:italic;color:var(--gold)}
+.cta-sub{font-size:0.96rem;font-weight:300;line-height:1.85;color:rgba(240,236,224,0.5);margin-bottom:3rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.cta-note{
+  margin-top:2rem;
+  font-size:0.75rem;color:rgba(201,168,76,0.45);
+  letter-spacing:0.08em;
+}
+
+/* Countdown strip */
+.urgency-strip{
+  background:rgba(7,9,14,0.8);
+  border:1px solid rgba(201,168,76,0.12);
+  border-radius:2px;padding:1.2rem 2rem;
+  margin-bottom:2rem;display:inline-flex;
+  align-items:center;gap:1.5rem;
+}
+.urgency-label{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.urgency-slots{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--gold)}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer{
+  background:var(--black);
+  border-top:1px solid rgba(201,168,76,0.06);
+  padding:4rem 4.5rem 2.5rem;
+}
+.foot-top{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:4rem;margin-bottom:3.5rem;
+  padding-bottom:3.5rem;
+  border-bottom:1px solid rgba(201,168,76,0.06);
+}
+.foot-brand-area{}
+.foot-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:600;color:var(--gold);
+  letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;
+}
+.foot-tagline{font-size:0.82rem;font-weight:300;line-height:1.8;color:rgba(240,236,224,0.35);max-width:220px;margin-bottom:1.5rem}
+.foot-social{display:flex;gap:0.8rem}
+.social-btn{
+  width:36px;height:36px;border:1px solid rgba(201,168,76,0.15);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:0.8rem;color:var(--muted);transition:all 0.25s;
+}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.08)}
+
+.foot-col-title{font-size:0.67rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:0.7rem}
+.foot-col a{font-size:0.82rem;font-weight:300;color:rgba(240,236,224,0.4);transition:color 0.2s}
+.foot-col a:hover{color:var(--gold)}
+
+.foot-contact .contact-item{display:flex;align-items:flex-start;gap:0.7rem;margin-bottom:0.8rem}
+.contact-icon{font-size:0.85rem;color:var(--gold);flex-shrink:0;margin-top:0.1rem}
+.contact-text{font-size:0.82rem;font-weight:300;color:rgba(240,236,224,0.4);line-height:1.5}
+
+.foot-bottom{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.foot-copy{font-size:0.73rem;color:rgba(201,168,76,0.25);letter-spacing:0.06em}
+.foot-legal{display:flex;gap:2rem}
+.foot-legal a{font-size:0.72rem;color:rgba(240,236,224,0.25);transition:color 0.2s}
+.foot-legal a:hover{color:var(--gold)}
+
+/* ══════════════════════════════════════════
+   WHATSAPP FLOAT
+══════════════════════════════════════════ */
+.wa-float{
+  position:fixed;bottom:2rem;right:2rem;z-index:800;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  box-shadow:0 8px 32px rgba(37,211,102,0.4);
+  animation:wapulse 2.5s ease-in-out infinite;
+  transition:transform 0.3s var(--ease);
+}
+.wa-float:hover{transform:scale(1.1)}
+@keyframes wapulse{
+  0%,100%{box-shadow:0 8px 32px rgba(37,211,102,0.35)}
+  50%{box-shadow:0 8px 60px rgba(37,211,102,0.6)}
+}
+
+/* Scroll to top */
+.scroll-top{
+  position:fixed;bottom:2rem;right:6rem;z-index:800;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--gold);
+  opacity:0;pointer-events:none;
+  transition:opacity 0.3s,background 0.25s;
+}
+.scroll-top.visible{opacity:1;pointer-events:all}
+.scroll-top:hover{background:rgba(201,168,76,0.2)}
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media(max-width:1100px){
+  nav{padding:1.1rem 2rem}
+  nav.scrolled{padding:0.85rem 2rem}
+  .nav-links{display:none}
+  .burger{display:flex}
+  .nav-cta{display:none}
+
+  .hero-inner{grid-template-columns:1fr;padding:calc(72px + 3.5rem) 2rem 3rem;gap:3rem}
+  .hero-right{display:none}
+  .hero-stats-inner{grid-template-columns:repeat(3,1fr);padding:1.5rem 2rem}
+  .hero-scroll{padding:1.5rem 2rem 2rem}
+  .hstat:nth-child(4),.hstat:nth-child(5){display:none}
+
+  .section,.section-sm{padding:5rem 2rem}
+  .qstrip{padding:4rem 2rem}
+  .pkgs-header{padding:4rem 2rem 2.5rem;flex-direction:column;align-items:flex-start}
+  .pkgs-grid{grid-template-columns:1fr;padding:0 2rem 4rem;gap:1.5px}
+  .hiw-inner{padding:0 2rem}
+  .hiw-grid{grid-template-columns:1fr 1fr;gap:3rem}
+  .hiw-grid::before{display:none}
+  .testi-inner{padding:0 2rem}
+  .why-inner{padding:0 2rem}
+  .why-grid{grid-template-columns:1fr}
+  .faq-inner{padding:0 2rem}
+  .cta-section{padding:6rem 2rem}
+  footer{padding:3rem 2rem 2rem}
+  .foot-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .foot-legal{justify-content:center}
+  .destinations .dest-header{padding:0 2rem 3rem}
+}
+
+@media(max-width:680px){
+  .hero-title{font-size:3.2rem}
+  .hero-stats-inner{grid-template-columns:repeat(2,1fr)}
+  .hstat:nth-child(5){display:none}
+  .hstat:nth-child(4){display:block}
+  .hiw-grid{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr}
+  .pkgs-grid{gap:1.5px}
+  .scroll-top{right:5.5rem}
+  .dest-slide{flex:0 0 88vw}
+  .tcard{flex:0 0 300px}
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ══ ANNOUNCE BAR ══ -->
+<div class="announce">
+  <div class="announce-ticker">
+    🏔️ Limited slots this season &nbsp;·&nbsp; Early Bird: <strong>₹500 off</strong> on first booking &nbsp;·&nbsp; WhatsApp <strong>+91 84940 40471</strong> for a free itinerary &nbsp;·&nbsp; Available 9AM–9PM daily
+  </div>
+</div>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="logo-mark">✦</div>
+    The Escape <span>Edit</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#how">Process</a></li>
+    <li><a href="#stories">Stories</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://wa.me/918494040471?text=Hi!%20I%20want%20to%20know%20more%20about%20your%20Kashmir%20tour%20packages." class="nav-cta" target="_blank">
+    💬 WhatsApp Us
+  </a>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#packages" class="m-link">Packages</a>
+  <a href="#destinations" class="m-link">Destinations</a>
+  <a href="#how" class="m-link">Process</a>
+  <a href="#stories" class="m-link">Stories</a>
+  <a href="#faq" class="m-link">FAQ</a>
+  <a href="https://wa.me/918494040471?text=Hi!%20I%20want%20to%20plan%20my%20Kashmir%20trip." class="m-cta" target="_blank">💬 Book Now on WhatsApp</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-layer1"></div>
+    <div class="hero-bg-layer2"></div>
+  </div>
+
+  <!-- Mountain silhouette -->
+  <svg class="hero-mountain" viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 200 L0 120 L80 80 L160 110 L240 60 L320 90 L400 30 L480 70 L560 20 L640 55 L720 0 L800 45 L880 25 L960 70 L1040 35 L1120 80 L1200 50 L1280 90 L1360 65 L1440 100 L1440 200 Z" fill="rgba(201,168,76,0.6)"/>
+    <path d="M0 200 L0 140 L100 100 L180 130 L260 80 L340 115 L430 55 L510 90 L600 40 L680 75 L760 25 L840 60 L920 40 L1000 85 L1080 55 L1160 100 L1250 70 L1330 105 L1440 80 L1440 200 Z" fill="rgba(13,24,40,0.8)"/>
+  </svg>
+
+  <!-- Snow -->
+  <div class="snow-wrap">
+    <span class="flake">❄</span><span class="flake">❄</span><span class="flake">❄</span>
+    <span class="flake">❄</span><span class="flake">❄</span><span class="flake">❄</span>
+    <span class="flake">❄</span><span class="flake">❄</span><span class="flake">❄</span>
+    <span class="flake">❄</span><span class="flake">❄</span><span class="flake">❄</span>
+  </div>
+
+  <div class="hero-inner">
+    <!-- Left -->
+    <div>
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Curated Kashmir Getaways — By Locals, For Travellers</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="line small">Heaven on Earth</span>
+        <span class="line">Kashmir —</span>
+        <span class="line italic">Curated.</span>
+        <span class="line bold">Perfected.</span>
+      </h1>
+      <p class="hero-sub">
+        Dal Lake houseboats at sunrise. Gulmarg snow beneath your boots.
+        Pahalgam silence that heals. Every detail planned by locals who
+        call this paradise home — you simply arrive and breathe it all in.
+      </p>
+      <div class="hero-btns">
+        <a href="#packages" class="btn-primary">
+          Explore Packages
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://wa.me/918494040471?text=Hi!%20I%20want%20to%20plan%20my%20Kashmir%20trip.%20Please%20share%20details." class="btn-ghost" target="_blank">
+          💬 Free Itinerary in 2 Hours
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: floating cards -->
+    <div class="hero-right" aria-hidden="true">
+      <div class="fcard fcard-1">
+        <div class="fcard-img">🛶</div>
+        <div class="fcard-body">
+          <div class="fcard-tag">Srinagar · Lakes &amp; Gardens</div>
+          <div class="fcard-name">The Dal Dream</div>
+          <div class="fcard-meta">2 Nights · 3 Days</div>
+          <div class="fcard-price">From ₹9,999<span style="font-size:0.7rem;color:var(--muted)">/person</span></div>
+          <div class="live-dot">Available</div>
+        </div>
+      </div>
+      <div class="fcard fcard-2">
+        <div class="fcard-img">❄️</div>
+        <div class="fcard-body">
+          <div class="fcard-tag">Gulmarg · Snow &amp; Skiing</div>
+          <div class="fcard-name">The Snow Escape</div>
+          <div class="fcard-meta">2 Nights · 3 Days</div>
+          <div class="fcard-price">From ₹11,999<span style="font-size:0.7rem;color:var(--muted)">/person</span></div>
+          <div class="fcard-badge">⭐ Most Booked</div>
+        </div>
+      </div>
+      <div class="fcard fcard-3">
+        <div class="fcard-img">🌸</div>
+        <div class="fcard-body">
+          <div class="fcard-tag">Pahalgam · Valleys &amp; Treks</div>
+          <div class="fcard-name">The Valley Trail</div>
+          <div class="fcard-meta">3 Nights · 4 Days</div>
+          <div class="fcard-price">From ₹13,999<span style="font-size:0.7rem;color:var(--muted)">/person</span></div>
+          <div class="live-dot">Available</div>
+        </div>
+      </div>
+      <div class="fcard fcard-4">
+        <div class="fcard-body" style="padding:1rem">
+          <div class="fcard-tag" style="margin-bottom:0.3rem">Group Size</div>
+          <div class="fcard-name" style="font-size:0.9rem">2–20 People</div>
+          <div class="fcard-badge" style="margin-top:0.4rem">Custom Pricing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll to Explore</div>
+    <div class="scroll-arrow">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="hero-stats-bar">
+    <div class="hero-stats-inner">
+      <div class="hstat">
+        <div class="hstat-num" data-target="200">0</div>
+        <div class="hstat-label">Travellers Hosted</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">4.9 ★</div>
+        <div class="hstat-label">Average Rating</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">3</div>
+        <div class="hstat-label">Iconic Destinations</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">Local</div>
+        <div class="hstat-label">Kashmiri Experts</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">Zero</div>
+        <div class="hstat-label">Hidden Costs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ QUOTE STRIP ══ -->
+<div class="qstrip">
+  <div class="qstrip-inner reveal">
+    <div class="qstrip-quote">"If there is a paradise on earth, <em>it is here, it is here, it is here.</em>"</div>
+    <div class="qstrip-line"></div>
+    <div class="qstrip-attr">— Amir Khusrow · 13th Century Poet on Kashmir</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ PACKAGES ══ -->
+<section class="pkgs-section" id="packages">
+  <div class="pkgs-header">
+    <div class="reveal">
+      <div class="sec-tag"><div class="ln"></div><span class="tx">Kashmir Getaways</span></div>
+      <h2 class="sec-title">Three <em>Faces</em> of<br>Heaven on Earth.</h2>
+    </div>
+    <p class="sec-desc reveal reveal-delay-2" style="max-width:320px">Fully handled. Hotels, shikaras, cabs, guides, meals. You just pack a bag and show up.</p>
+  </div>
+  <div class="pkgs-grid">
+
+    <!-- Package 1 -->
+    <div class="pkg reveal">
+      <div class="pkg-badge">2 Nights · 3 Days · Lakes &amp; Gardens</div>
+      <span class="pkg-icon">🛶</span>
+      <h3 class="pkg-name">The Dal Dream</h3>
+      <div class="pkg-loc">Srinagar · Dal Lake · Mughal Gardens</div>
+      <p class="pkg-desc">Wake up on a houseboat with mist rising over Dal Lake. Shikara rides at golden hour. Mughal gardens in full bloom. Srinagar's old bazaars. This is Kashmir's timeless soul.</p>
+      <div>
+        <div class="inc-title">What's Included</div>
+        <ul class="inc-list">
+          <li>2 nights on a Heritage Houseboat, Dal Lake</li>
+          <li>Daily breakfast + 1 Wazwan dinner</li>
+          <li>Shikara ride — sunrise &amp; evening golden hour</li>
+          <li>Mughal Gardens tour (Shalimar, Nishat, Chashme Shahi)</li>
+          <li>Airport/station pickup &amp; drop in AC vehicle</li>
+          <li>Local guide for all sightseeing</li>
+          <li>All taxes &amp; transfers included</li>
+        </ul>
+      </div>
+      <div class="pkg-foot">
+        <div>
+          <div class="pkg-price-lbl">Starting from</div>
+          <div class="pkg-price">₹9,999</div>
+          <div class="pkg-price-sub">per person · twin sharing</div>
+        </div>
+        <a href="https://wa.me/918494040471?text=Hi!%20I'm%20interested%20in%20The%20Dal%20Dream%20package%20-%20Srinagar.%20Please%20share%20details." class="pkg-btn" target="_blank">Book Now →</a>
+      </div>
+    </div>
+
+    <!-- Package 2 — Featured -->
+    <div class="pkg featured reveal reveal-delay-2">
+      <div class="pkg-badge" style="background:rgba(201,168,76,0.1)">⭐ Most Booked · 2 Nights · 3 Days · Snow</div>
+      <span class="pkg-icon">❄️</span>
+      <h3 class="pkg-name">The Snow Escape</h3>
+      <div class="pkg-loc">Gulmarg · World's Highest Gondola · 13,400 ft</div>
+      <p class="pkg-desc">Asia's best ski resort in winter. A blooming alpine meadow in summer. The Gondola to 13,400 ft. Snow-capped Himalayas on every side. Gulmarg hits different — every single time.</p>
+      <div>
+        <div class="inc-title">What's Included</div>
+        <ul class="inc-list">
+          <li>2 nights premium resort stay, Gulmarg</li>
+          <li>Daily breakfast + 2 dinners</li>
+          <li>Gondola ride — Phase 1 &amp; Phase 2</li>
+          <li>Snow activities — skiing, sledding, snowball (seasonal)</li>
+          <li>Srinagar–Gulmarg–Srinagar AC cab</li>
+          <li>Airport/station pickup &amp; drop</li>
+          <li>Local guide &amp; all entry fees covered</li>
+        </ul>
+      </div>
+      <div class="pkg-foot">
+        <div>
+          <div class="pkg-price-lbl">Starting from</div>
+          <div class="pkg-price">₹11,999</div>
+          <div class="pkg-price-sub">per person · twin sharing</div>
+        </div>
+        <a href="https://wa.me/918494040471?text=Hi!%20I'm%20interested%20in%20The%20Snow%20Escape%20package%20-%20Gulmarg.%20Please%20share%20details." class="pkg-btn" target="_blank">Book Now →</a>
+      </div>
+    </div>
+
+    <!-- Package 3 -->
+    <div class="pkg reveal reveal-delay-4">
+      <div class="pkg-badge">3 Nights · 4 Days · Valley &amp; Trek</div>
+      <span class="pkg-icon">🌸</span>
+      <h3 class="pkg-name">The Valley Trail</h3>
+      <div class="pkg-loc">Pahalgam · Betaab Valley · Aru · Baisaran</div>
+      <p class="pkg-desc">The Lidder river. Betaab Valley's impossible green. Baisaran meadows called "Mini Switzerland." A Kashmir that feels untouched, unhurried, and completely healing.</p>
+      <div>
+        <div class="inc-title">What's Included</div>
+        <ul class="inc-list">
+          <li>3 nights riverside resort/cottage, Pahalgam</li>
+          <li>Daily breakfast + 2 dinners</li>
+          <li>Betaab Valley, Aru Valley, Chandanwari visits</li>
+          <li>Baisaran meadow horse ride experience</li>
+          <li>Srinagar–Pahalgam–Srinagar AC cab</li>
+          <li>Airport/station pickup &amp; drop</li>
+          <li>Local guide &amp; all entry tickets</li>
+        </ul>
+      </div>
+      <div class="pkg-foot">
+        <div>
+          <div class="pkg-price-lbl">Starting from</div>
+          <div class="pkg-price">₹13,999</div>
+          <div class="pkg-price-sub">per person · twin sharing</div>
+        </div>
+        <a href="https://wa.me/918494040471?text=Hi!%20I'm%20interested%20in%20The%20Valley%20Trail%20package%20-%20Pahalgam.%20Please%20share%20details." class="pkg-btn" target="_blank">Book Now →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ DESTINATIONS SHOWCASE ══ -->
+<section class="destinations" id="destinations">
+  <div class="dest-header reveal">
+    <div class="sec-tag"><div class="ln"></div><span class="tx">The Places</span></div>
+    <h2 class="sec-title">Kashmir's <em>Three Souls</em></h2>
+    <p class="sec-desc" style="max-width:500px;margin-top:0.5rem">Each destination a completely different world. Each one unforgettable.</p>
+  </div>
+  <div class="dest-track-wrap">
+    <div class="dest-track" id="dest-track">
+      <div class="dest-slide">
+        <div class="dest-slide-bg"><span>🛶</span></div>
+        <div class="dest-slide-overlay"></div>
+        <div class="dest-slide-content">
+          <div class="dest-slide-tag">Srinagar · J&amp;K</div>
+          <div class="dest-slide-name">Dal Lake</div>
+          <div class="dest-slide-desc">Waking on water. Mist over mountains. A floating market at dawn. The world's most romantic breakfast table.</div>
+          <div class="dest-slide-pill">🌅 Best: Mar – Oct</div>
+        </div>
+      </div>
+      <div class="dest-slide">
+        <div class="dest-slide-bg"><span>❄️</span></div>
+        <div class="dest-slide-overlay"></div>
+        <div class="dest-slide-content">
+          <div class="dest-slide-tag">Gulmarg · 2,690m</div>
+          <div class="dest-slide-name">Gulmarg</div>
+          <div class="dest-slide-desc">Asia's finest ski resort. A meadow of wildflowers in summer. The Gondola at 13,400 ft with Himalayas on all sides.</div>
+          <div class="dest-slide-pill">❄️ Snow: Dec – Mar · 🌸 Summer: Apr – Sep</div>
+        </div>
+      </div>
+      <div class="dest-slide">
+        <div class="dest-slide-bg"><span>🌿</span></div>
+        <div class="dest-slide-overlay"></div>
+        <div class="dest-slide-content">
+          <div class="dest-slide-tag">Pahalgam · Valley of Shepherds</div>
+          <div class="dest-slide-name">Pahalgam</div>
+          <div class="dest-slide-desc">Rivers that sing. Valleys so green they don't look real. Betaab Valley. Baisaran meadows. The Kashmir that heals.</div>
+          <div class="dest-slide-pill">🌿 Best: Apr – Oct</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="hiw-wrap" id="how">
+  <div class="hiw-inner">
+    <div class="reveal">
+      <div class="sec-tag"><div class="ln"></div><span class="tx">The Process</span></div>
+      <h2 class="sec-title">Four Steps to<br><em>Kashmir.</em></h2>
+    </div>
+    <div class="hiw-grid">
+      <div class="hiw-step reveal reveal-delay-1">
+        <div class="hiw-num-wrap">01</div>
+        <span class="hiw-icon">💬</span>
+        <div class="hiw-ttl">WhatsApp Us</div>
+        <p class="hiw-desc">Tell us your dates, group size, and which package excites you. Or let us suggest the perfect one for your vibe and budget.</p>
+      </div>
+      <div class="hiw-step reveal reveal-delay-2">
+        <div class="hiw-num-wrap">02</div>
+        <span class="hiw-icon">📋</span>
+        <div class="hiw-ttl">Get Your Itinerary</div>
+        <p class="hiw-desc">We send a detailed day-by-day plan within 2 hours. Review it, suggest changes — we refine until it's perfect.</p>
+      </div>
+      <div class="hiw-step reveal reveal-delay-3">
+        <div class="hiw-num-wrap">03</div>
+        <span class="hiw-icon">💳</span>
+        <div class="hiw-ttl">Pay 40% Advance</div>
+        <p class="hiw-desc">Confirm your slot with just 40% upfront via UPI. Balance due 7 days before departure. Flexible date changes available.</p>
+      </div>
+      <div class="hiw-step reveal reveal-delay-4">
+        <div class="hiw-num-wrap">04</div>
+        <span class="hiw-icon">🏔️</span>
+        <div class="hiw-ttl">Just Show Up</div>
+        <p class="hiw-desc">Your driver meets you at the airport. Hotels are booked. Guide is ready. You just inhale the mountain air and smile.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testi-section" id="stories">
+  <div class="testi-inner">
+    <div class="reveal">
+      <div class="sec-tag"><div class="ln"></div><span class="tx">Traveller Stories</span></div>
+      <h2 class="sec-title">Real Kashmir,<br><em>Real People.</em></h2>
+    </div>
+  </div>
+  <div class="testi-marquee">
+    <div class="testi-track">
+      <!-- Original set -->
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"Waking up on the houseboat with chai and the lake in the mist — that's an image I'll carry forever. Every detail was already sorted."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">RK</div>
+          <div><div class="tcard-name">Riya &amp; Karan</div><div class="tcard-loc">Delhi · The Dal Dream</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"Gulmarg in January. We'd never seen snow before. The gondola ride was unreal. Our guide was amazing and everything went perfectly smooth."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">AS</div>
+          <div><div class="tcard-name">Arjun S.</div><div class="tcard-loc">Pune · The Snow Escape</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"Pahalgam literally healed something in me. Group of 8 — best trip we've ever done. Zero stress. They thought of everything before we even asked."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">NM</div>
+          <div><div class="tcard-name">Neha M.</div><div class="tcard-loc">Mumbai · The Valley Trail</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"The shikara at sunrise, chai in hand, mountains all around — I've travelled to 12 countries and Kashmir tops the list. The team is magic."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">VP</div>
+          <div><div class="tcard-name">Vikram P.</div><div class="tcard-loc">Bangalore · The Dal Dream</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"Booked for our honeymoon. The houseboat, the flowers, the private shikara — it was a dream. They went beyond what was promised."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">SS</div>
+          <div><div class="tcard-name">Shreya &amp; Siddharth</div><div class="tcard-loc">Hyderabad · Dal Dream + Pahalgam</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"I was nervous about a solo trip to Kashmir. They made me feel completely safe and connected. Every person they introduced me to was wonderful."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">PT</div>
+          <div><div class="tcard-name">Priya T.</div><div class="tcard-loc">Chennai · Solo · The Valley Trail</div></div>
+        </div>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"Waking up on the houseboat with chai and the lake in the mist — that's an image I'll carry forever. Every detail was already sorted."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">RK</div>
+          <div><div class="tcard-name">Riya &amp; Karan</div><div class="tcard-loc">Delhi · The Dal Dream</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"Gulmarg in January. We'd never seen snow before. The gondola ride was unreal. Our guide was amazing and everything went perfectly smooth."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">AS</div>
+          <div><div class="tcard-name">Arjun S.</div><div class="tcard-loc">Pune · The Snow Escape</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"Pahalgam literally healed something in me. Group of 8 — best trip we've ever done. Zero stress. They thought of everything before we even asked."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">NM</div>
+          <div><div class="tcard-name">Neha M.</div><div class="tcard-loc">Mumbai · The Valley Trail</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"The shikara at sunrise, chai in hand, mountains all around — I've travelled to 12 countries and Kashmir tops the list. The team is magic."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">VP</div>
+          <div><div class="tcard-name">Vikram P.</div><div class="tcard-loc">Bangalore · The Dal Dream</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"Booked for our honeymoon. The houseboat, the flowers, the private shikara — it was a dream. They went beyond what was promised."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">SS</div>
+          <div><div class="tcard-name">Shreya &amp; Siddharth</div><div class="tcard-loc">Hyderabad · Dal Dream + Pahalgam</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"I was nervous about a solo trip to Kashmir. They made me feel completely safe and connected. Every person they introduced me to was wonderful."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">PT</div>
+          <div><div class="tcard-name">Priya T.</div><div class="tcard-loc">Chennai · Solo · The Valley Trail</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ WHY US ══ -->
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <div class="reveal">
+      <div class="sec-tag"><div class="ln"></div><span class="tx">Why Choose Us</span></div>
+      <h2 class="sec-title">We Know Kashmir<br><em>From the Inside.</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-icon-wrap">🏔️</div>
+        <div>
+          <div class="why-ttl">We're Kashmiri, Not Middlemen</div>
+          <p class="why-desc">We live here. We know which houseboat actually delivers, which Wazwan restaurant is authentic, and which route avoids the tourist rush. You get insider access, not a package off a shelf.</p>
+        </div>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-icon-wrap">💰</div>
+        <div>
+          <div class="why-ttl">Zero Hidden Costs. Ever.</div>
+          <p class="why-desc">What you see is what you pay. Taxes, transfers, listed activities — all in. No "per person extra" surprises, no guide tips added at checkout. One clean, honest price.</p>
+        </div>
+      </div>
+      <div class="why-item reveal reveal-delay-3">
+        <div class="why-icon-wrap">📞</div>
+        <div>
+          <div class="why-ttl">On-Ground 24/7 Support</div>
+          <p class="why-desc">Something unexpected? Weather change? Our local team is on WhatsApp through your entire trip. We've got a plan B for everything — because Kashmir is wild and beautiful.</p>
+        </div>
+      </div>
+      <div class="why-item reveal reveal-delay-4">
+        <div class="why-icon-wrap">🔄</div>
+        <div>
+          <div class="why-ttl">Flexible &amp; Honest Booking</div>
+          <p class="why-desc">Plans shift. Change your dates up to 10 days before departure. We rebook everything, no penalty. Because trust matters more to us than a single transaction.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="reveal">
+      <div class="sec-tag"><div class="ln"></div><span class="tx">Common Questions</span></div>
+      <h2 class="sec-title">Everything<br><em>You Need to Know.</em></h2>
+    </div>
+    <div class="faq-list reveal reveal-delay-2">
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-text">Is Kashmir safe to visit right now?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes — Kashmir's tourist areas (Srinagar, Gulmarg, Pahalgam) are extremely safe and welcoming. Thousands visit every month. Our team is local and we monitor conditions in real time. We'd never send you somewhere we wouldn't go ourselves — our families live here.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-text">What's the best time to visit Kashmir?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a"><div class="faq-a-inner">April–June is peak season with blooming gardens and pleasant weather. July–September brings lush green valleys. December–February is magical for snow lovers in Gulmarg. Each season offers something unique — we'll recommend the best time for what you want to experience.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-text">Can I customise the packages?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely. Every package is a starting point. Add nights, combine destinations, upgrade your houseboat, include honeymooner extras, or request a group-specific plan. WhatsApp us and we'll build something just for you — usually within 2 hours.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-text">How does the payment work?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Just 40% advance via UPI to confirm your slot. The remaining 60% is due 7 days before your departure. We accept all major UPI apps, bank transfers, and cards. Receipts provided immediately for every payment.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-text">What's your cancellation policy?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Cancel 10+ days before: full refund of advance. Cancel 7–10 days before: 50% refund. Under 7 days: no refund but we'll credit it toward your next trip. Date changes (10+ days prior) are always free — we simply rebook everything for you.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-text">Do you handle solo travellers?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes, and we love solo travellers. We match them with cosy guesthouses, private guides, and our local contacts so you always feel connected. Many of our solo guests become regulars who come back with friends. Kashmir is safe and extraordinary for solo travel.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ CTA ══ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Don't Wait</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="cta-title reveal reveal-delay-1">Kashmir Is<br><em>Calling You.</em></h2>
+    <div class="urgency-strip reveal reveal-delay-2">
+      <div class="urgency-label">Slots this season</div>
+      <div class="urgency-slots">Limited Availability</div>
+      <div class="live-dot">Booking Now</div>
+    </div>
+    <p class="cta-sub reveal reveal-delay-3">Message us right now. We'll have your personalised Kashmir itinerary ready in 2 hours. No commitment needed to see the plan — just let us show you what's possible.</p>
+    <div class="cta-btns reveal reveal-delay-4">
+      <a href="https://wa.me/918494040471?text=Hi!%20I%20want%20to%20plan%20my%20Kashmir%20trip.%20Can%20you%20share%20the%20packages%20and%20available%20dates?" class="btn-primary" target="_blank" style="font-size:0.82rem;padding:1.1rem 2.8rem">
+        💬 WhatsApp — Free Itinerary in 2 Hours
+      </a>
+      <a href="mailto:theescapeedit.kashmir@gmail.com" class="btn-ghost" style="padding:1.1rem 2.4rem">
+        ✉️ Email Us
+      </a>
+    </div>
+    <div class="cta-note reveal reveal-delay-5">📞 +91 84940 40471 &nbsp;·&nbsp; Available 9AM–9PM daily &nbsp;·&nbsp; Kashmiri-owned &amp; operated</div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand-area">
+      <div class="foot-logo">✦ The Escape Edit · Kashmir</div>
+      <p class="foot-tagline">Curated Kashmir getaways by locals who call this paradise home. Zero stress. Zero hidden costs. Pure Kashmir.</p>
+      <div class="foot-social">
+        <a href="https://wa.me/918494040471" class="social-btn" target="_blank" title="WhatsApp">💬</a>
+        <a href="mailto:theescapeedit.kashmir@gmail.com" class="social-btn" title="Email">✉</a>
+        <a href="#" class="social-btn" title="Instagram">📸</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <div class="foot-col-title">Packages</div>
+      <ul>
+        <li><a href="#packages">The Dal Dream — ₹9,999</a></li>
+        <li><a href="#packages">The Snow Escape — ₹11,999</a></li>
+        <li><a href="#packages">The Valley Trail — ₹13,999</a></li>
+        <li><a href="https://wa.me/918494040471?text=Hi!%20I%20want%20a%20custom%20Kashmir%20package." target="_blank">Custom Package →</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <div class="foot-col-title">Destinations</div>
+      <ul>
+        <li><a href="#destinations">Dal Lake · Srinagar</a></li>
+        <li><a href="#destinations">Gulmarg · 2,690m</a></li>
+        <li><a href="#destinations">Pahalgam · Valley</a></li>
+        <li><a href="#destinations">Betaab Valley</a></li>
+      </ul>
+    </div>
+    <div class="foot-col foot-contact">
+      <div class="foot-col-title">Contact</div>
+      <div class="contact-item">
+        <span class="contact-icon">📱</span>
+        <div class="contact-text">+91 84940 40471<br>9AM – 9PM daily</div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-text">theescapeedit.kashmir<br>@gmail.com</div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <div class="contact-text">Srinagar, Jammu &amp; Kashmir</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2025 The Escape Edit Kashmir · All rights reserved · Made with ❤️ in Kashmir</div>
+    <div class="foot-legal">
+      <a href="#">Refund Policy</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/918494040471?text=Hi!%20I%20want%20to%20know%20more%20about%20your%20Kashmir%20tour%20packages." class="wa-float" target="_blank" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- ══ JAVASCRIPT ══ -->
+<script>
+/* Custom cursor */
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+function animateRing(){rx+=(mx-rx)*0.15;ry+=(my-ry)*0.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing)}
+animateRing();
+
+/* Nav scroll */
+const nav = document.getElementById('nav');
+const announce = document.querySelector('.announce');
+window.addEventListener('scroll',()=>{
+  const scrolled = window.scrollY > 60;
+  nav.classList.toggle('scrolled', scrolled);
+  const scrollTop = document.getElementById('scroll-top');
+  scrollTop.classList.toggle('visible', window.scrollY > 400);
+});
+
+/* Mobile menu */
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobile-menu');
+burger.addEventListener('click',()=>{
+  burger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open')?'hidden':'';
+});
+document.querySelectorAll('.m-link,.m-cta').forEach(a=>{
+  a.addEventListener('click',()=>{
+    burger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow='';
+  });
+});
+
+/* Scroll reveal */
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>io.observe(el));
+
+/* Counter animation */
+function animateCount(el, target, suffix=''){
+  let start=0; const dur=1800;
+  const step = t=>{
+    start = Math.min(start + target/dur*16, target);
+    el.textContent = Math.floor(start)+suffix;
+    if(start < target) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const counterIO = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const t = parseInt(e.target.dataset.target);
+      if(t) animateCount(e.target, t, '+');
+      counterIO.unobserve(e.target);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('[data-target]').forEach(el=>counterIO.observe(el));
+
+/* FAQ accordion */
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+/* Smooth hash scroll with offset */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      const offset = 70;
+      window.scrollTo({top: target.offsetTop - offset, behavior:'smooth'});
+    }
+  });
+});
+
+/* Nav active state on scroll */
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY >= s.offsetTop - 200) current = s.id});
+  navLinks.forEach(a=>{
+    a.style.color = a.getAttribute('href')==='#'+current ? 'var(--gold)' : '';
+  });
+});
+</script>
+</body>
+</html>
